@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Voice Agent - Day 12</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}">
+    <link rel="icon" href="{{ url_for('static', path='/favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎙️ SpeakSmart AI</h1>
+            <p class="subtitle">Your intelligent voice companion, now with a revamped modern interface.</p>
+        </header>
+
+        <main class="chat-container">
+            <div class="chat-history" id="chat-history">
+                <!-- Chat messages will be appended here -->
+                <div class="message assistant-message">
+                    <p>Hello! Press the microphone button and start speaking.</p>
+                </div>
+            </div>
+
+            <div class="chat-input-area">
+                <div class="status-bar" id="status-bar">
+                    <p id="status-text">Ready</p>
+                </div>
+                <button id="record-button" class="record-button">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                <audio id="ai-chat-player" style="display: none;"></audio>
+                 <audio id="fallback-player" style="display: none;"></audio>
+            </div>
+        </main>
+
+        <footer>
+            <p>🚀 Part of the #30DaysOfVoiceAgents Challenge</p>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="{{ url_for('static', path='/script.js') }}"></script>
+</body>
+</html>
