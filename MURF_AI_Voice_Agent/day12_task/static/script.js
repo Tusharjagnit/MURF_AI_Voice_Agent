@@ -150,7 +150,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await res.json();
 
             if (!res.ok || !data.success) {
-                throw new Error(data.error || 'Server error');
+                // Throw the entire JSON payload so the catch block can access fallback_audio_path
+                throw data;
             }
             
             addMessageToHistory(data.transcript, 'user');
@@ -162,7 +163,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (err) {
             console.error('Error during chat processing:', err);
-            addMessageToHistory(`Error: ${err.message}. Please try again.`, 'assistant');
+            // Now `err` is the JSON object from the server
+            addMessageToHistory(`Error: ${err.error || 'An unknown error occurred.'}. Please try again.`, 'assistant');
+            
             // Check if there's a fallback audio path and play it
             if (err.fallback_audio_path) {
                 fallbackPlayer.src = err.fallback_audio_path;
